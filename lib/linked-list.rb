@@ -14,7 +14,10 @@ class LinkedList
     p "head is #{head.value}, points to #{head.next_node.value}"
     p "tail is #{tail.value}, points to #{tail.next_node}"
     p "list length is #{size}"
-    p "node at index 3 is #{at(3)}"
+    p "node at index 3 is #{at(3).value}"
+    pop
+    p @tail
+    p "list length is #{size}"
   end
 
   # adds a new node containing value to the end of the list
@@ -70,11 +73,14 @@ class LinkedList
       node = node.next_node
       i += 1
     end
-    node.value
+    node
   end
 
   # removes the last element from the list
   def pop
+    length = size
+    @tail = at(length - 2)
+    @tail.next_node = nil
   end
 
   # returns true if the passed in value is in the list and otherwise returns false
