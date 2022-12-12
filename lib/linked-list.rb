@@ -11,11 +11,10 @@ class LinkedList
     prepend('Node B')
     append('Node C')
     append('Node D')
-    p size
-    p head
-    p tail
-    p "head is #{@head.value}, points to #{@head.next_node.value}"
-    p "tail is #{@tail.value}, points to #{@tail.next_node}"
+    p "head is #{head.value}, points to #{head.next_node.value}"
+    p "tail is #{tail.value}, points to #{tail.next_node}"
+    p "list length is #{size}"
+    p "node at index 3 is #{at(3)}"
   end
 
   # adds a new node containing value to the end of the list
@@ -65,6 +64,13 @@ class LinkedList
 
   # returns the node at a given index
   def at(index)
+    i = 0
+    node = @head
+    while i < index
+      node = node.next_node
+      i += 1
+    end
+    node.value
   end
 
   # removes the last element from the list
