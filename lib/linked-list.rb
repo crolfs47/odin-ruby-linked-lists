@@ -10,9 +10,11 @@ class LinkedList
     append('Node A')
     prepend('Node B')
     append('Node C')
-    p @head
-    p @tail
-    p "head is #{@head.value}, points to #{@head.next_node}"
+    append('Node D')
+    p size
+    p head
+    p tail
+    p "head is #{@head.value}, points to #{@head.next_node.value}"
     p "tail is #{@tail.value}, points to #{@tail.next_node}"
   end
 
@@ -42,16 +44,23 @@ class LinkedList
 
   # returns the total number of nodes in the list
   def size
-    @linked_list.length
+    count = 0
+    node = @head
+    until node.nil?
+      count += 1
+      node = node.next_node
+    end
+    count
   end
 
   # returns the first node in the list
   def head
-    @linked_list[0]
+    @head
   end
 
   # returns the last node in the list
   def tail
+    @tail
   end
 
   # returns the node at a given index
