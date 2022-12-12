@@ -1,30 +1,53 @@
+require_relative 'node'
+
 class LinkedList
+  attr_reader :head, :tail
+  
   def initialize
-    @linked_list = []
-    append('append node')
-    prepend('prepend node')
+    # @linked_list = []
+    @head = nil
+    @tail = nil
+    append('Node A')
+    prepend('Node B')
+    append('Node C')
+    p @head
+    p @tail
+    p "head is #{@head.value}, points to #{@head.next_node}"
+    p "tail is #{@tail.value}, points to #{@tail.next_node}"
   end
 
   # adds a new node containing value to the end of the list
   def append(value)
     new_node = Node.new(value)
-    @linked_list.push(new_node)
-    p @linked_list
+    if @head.nil?
+      @head = new_node
+      @tail = new_node
+    else
+      @tail.next_node = new_node
+    end
+    @tail = new_node
   end
   
   # adds a new node containing value to the start of a list
   def prepend(value)
     new_node = Node.new(value)
-    @linked_list.unshift(new_node)
-    p @linked_list
+    if @head.nil?
+      @head = new_node
+      @tail = new_node
+    else
+      new_node.next_node = @head
+    end
+    @head = new_node
   end
 
   # returns the total number of nodes in the list
   def size
+    @linked_list.length
   end
 
   # returns the first node in the list
   def head
+    @linked_list[0]
   end
 
   # returns the last node in the list
@@ -51,15 +74,6 @@ class LinkedList
   def to_s
   end
 
-end
-
-class Node
-  def initialize(value)
-    @value = value
-    @next = nil
-    p @value
-    p @next
-  end
 end
 
 LinkedList.new
