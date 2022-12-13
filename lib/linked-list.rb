@@ -15,9 +15,10 @@ class LinkedList
     p "tail is #{tail.value}, points to #{tail.next_node}"
     p "list length is #{size}"
     p "node at index 3 is #{at(3).value}"
-    pop
-    p @tail
-    p "list length is #{size}"
+    # pop
+    # p @tail
+    # p "new list length is #{size}"
+    p contains?('Node A')
   end
 
   # adds a new node containing value to the end of the list
@@ -85,6 +86,13 @@ class LinkedList
 
   # returns true if the passed in value is in the list and otherwise returns false
   def contains?(value)
+    node = @head
+    until node.nil?
+      return true if node.value == value
+
+      node = node.next_node
+    end
+    false
   end
 
   # returns the index of the node containing value, or nil if not found
